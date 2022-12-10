@@ -2,7 +2,7 @@ import serial
 import json
 import time
 
-class Host:
+class Host_serial:
     def __init__(self, pico_data_serial="/dev/ttyACM1", baud=9600, timeout=5):
         self.serial = serial.Serial(pico_data_serial, baud, timeout=timeout)
 
@@ -23,7 +23,7 @@ class Host:
         # the line should be echoed.
         # If it isn't, something is wrong.
 
-    def send_comand(self, file: str = "json/commands.json"):
+    def send_comand(self, file: str = "Host/json/example.json"):
         """
         This function helps to send the commands in json format to the slave pico device
         """
