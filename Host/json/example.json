@@ -1,0 +1,26 @@
+{
+    "DeviceName": "pico",
+    "DeviceID": "001",
+    "DeviceVerified": "true",
+    "DeviceSensor": {
+        "sensor": "touch",
+        "sensorID": "001",
+        "pins": [
+            19,
+            20
+        ],
+        "sensorVerified": "Not Yet",
+        "readings": []
+    },
+
+    "Output": {
+        "Devices": {
+            "SensorRequest": "touch",
+            "VerificationStatus": {
+                "Status": "",
+                "Error": ""
+            },
+            "SensorReadings": []
+        }
+    }
+}
