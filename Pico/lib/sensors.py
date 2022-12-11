@@ -2,6 +2,15 @@ import digitalio
 import analogio
 
 class Touch_sensor:
+    __instance = None
+    def __new__(cls, pin):
+        """
+        Singleton class
+        """
+        if cls.__instance is None:
+            cls.__instance = object.__new__(cls)
+        return cls.__instance
+
     def __init__(self, pin):
         self.pin = pin
         self.touch = digitalio.DigitalInOut(pin)
@@ -15,8 +24,19 @@ class Touch_sensor:
     def __str__(self):
         return "Touch sensor on pin " + str(self.pin)
 
+    def deinit(self):
+        self.touch.deinit()
 
 class LDR:
+    __instance = None
+    def __new__(cls, pin):
+        """
+        Singleton class
+        """
+        if cls.__instance is None:
+            cls.__instance = object.__new__(cls)
+        return cls.__instance
+
     def __init__(self, pin):
         self.pin = pin
         self.ldr = analogio.AnalogIn(pin)
@@ -29,4 +49,7 @@ class LDR:
 
     def light(self):
         return self.ldr.value/ 100
+
+    def deinit(self):
+        self.ldr.deinit()
 

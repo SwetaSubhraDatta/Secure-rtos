@@ -1,10 +1,17 @@
-from lib import Touch_sensor
+from lib.sensors import Touch_sensor
+from lib.sensors import LDR
 import board
 import time
 
 
 def ldr_routine():
     return ldr.light()
+
+def touch_routine():
+    if touch.is_pressed():
+        return 0
+    else: return 1
+
 
 def secure_digital_binary_routine(buffer_counter=0,buffer_security=0):
     global touch_security
@@ -42,10 +49,6 @@ def secure_analog_buffer_routine(bufffer_counter=0,current_value=0):
         buffer_security=buffer_security
     return buffer_security[bufffer_counter]
 
-def touch_routine():
-    if touch.is_pressed():
-        return 0
-    else: return 1
 
 def setup():
     global touch
