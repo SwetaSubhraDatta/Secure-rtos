@@ -5,22 +5,7 @@
     "DeviceSensor": {
         "sensor": "touch",
         "sensorID": "001",
-        "pins": [
-            19,
-            20
-        ],
-        "sensorVerified": "Not Yet",
-        "readings": []
-    },
-
-    "Output": {
-        "Devices": {
-            "SensorRequest": "touch",
-            "VerificationStatus": {
-                "Status": "",
-                "Error": ""
-            },
-            "SensorReadings": []
-        }
+        "pins": [0],
+        "readings": 2
     }
 }

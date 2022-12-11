@@ -3,8 +3,8 @@ import json
 import time
 
 class Host_serial:
-    def __init__(self, pico_data_serial="/dev/ttyACM1", baud=9600, timeout=5):
-        self.serial = serial.Serial(pico_data_serial, baud, timeout=timeout)
+    def __init__(self, port="/dev/ttyACM1", baud=9600, timeout=5):
+        self.serial = serial.Serial(port, baud, timeout=timeout)
 
     def receive(self) -> str:
         """
