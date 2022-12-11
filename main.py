@@ -12,7 +12,7 @@ def verify_json(json_file):
         json_file_verified = json_verify(json_load)
         return json_file_verified
 if __name__ == "__main__":
-        host = Host(port="/dev/cu.usbmodem103")
+        host = Host(port="/dev/cu.usbmodem1103")
         json_verified=verify_json(json_file="Host/json/example.json")
         while (json_verified):
             host.send_comand(file ="Host/json/example.json")
