@@ -41,7 +41,6 @@ class Serial:
         self.serial.reset_output_buffer()
         if self.serial.in_waiting != 0:
             commands = self.serial.readline().decode("utf-8")
-            print(commands)
             commands = json.loads(commands)
         return commands
 
@@ -86,13 +85,14 @@ class Serial:
         Writes a message as a serial communication
         """
         self.serial.reset_input_buffer()
-        data = json.dumps(msg)
-        data=bytes("Output: "+ data,"utf-8")
+        if "Spectral" in msg:
+            data = json.dumps(msg["Spectral"])
+        data = bytes("spectral:" + data + ":::", "utf-8")
         self.serial.write(data)
         self.serial.flush()
 
-        # if "Relay" in msg:
-        #     data = json.dumps(msg["Relay"])
-        # data = bytes("Relay:" + data, "utf-8")
-        # self.serial.write(data)
-        # self.serial.flush()
+        if "Relay" in msg:
+            data = json.dumps(msg["Relay"])
+        data = bytes("Relay:" + data, "utf-8")
+        self.serial.write(data)
+        self.serial.flush()
