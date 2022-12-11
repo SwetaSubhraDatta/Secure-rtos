@@ -4,10 +4,10 @@ import board
 import time
 
 
-def ldr_routine():
+def ldr_routine(ldr):
     return ldr.light()
 
-def touch_routine():
+def touch_routine(touch):
     if touch.is_pressed():
         return 0
     else: return 1
@@ -17,7 +17,7 @@ def secure_digital_binary_routine(buffer_counter=0,buffer_security=0):
     global touch_security
     if buffer_security>8:
         touch_security=sorted(touch_security,reversed=True)
-    touch_security=[0.1,0,0.2,0.3,0.4]
+    touch_security=[19,8,7,6,5]
     return touch_security[buffer_counter]
     
 
@@ -50,51 +50,32 @@ def secure_analog_buffer_routine(bufffer_counter=0,current_value=0):
     return buffer_security[bufffer_counter]
 
 
-def setup():
-    global touch
-    global ldr
-    pin=board.GP0
-    time.sleep(0.1)
-    pin_ldr=board.GP26_A0
-    touch=Touch_sensor.Touch_sensor(pin=pin)
-    ldr=Touch_sensor.LDR(pin=pin_ldr)
 
 
-def task1(time_counter=0):
+def task2(time_counter,ldr_sensor,dout):
     buffer_counter=0
     print("Running Secure Task1 see the plots")
-    while(time_counter>=0 and time_counter<=100):
+    while(time_counter>=0 and time_counter<=8): #Hardcoding timeslices for now later will get from the real time clock/Systicks
         if buffer_counter==4:
             buffer_counter=0
-        value=ldr_routine()
-        print(value)
-        print(secure_analog_buffer_routine(bufffer_counter=buffer_counter,current_value=value))
+        value=ldr_routine(ldr_sensor)
+        dout["Task2"]["values"].append(value)
+        dout["Task2"]["values"].append(secure_analog_buffer_routine(bufffer_counter=buffer_counter,current_value=value))
         time.sleep(0.1)
         buffer_counter+=1
         time_counter+=1
     return time_counter
 
-def task2(time_counter=0):
-    print("Running Secure Task2 see the plots")
+def task1(time_counter,touch_sensor,dout):  ##Need to modify the counter system
+    print("Running Secure Task1 see the plots")
     buffer_counter=0
-    while(time_counter>=100 and time_counter<=200):
+    while(time_counter>=0 and time_counter<=8):
         if buffer_counter==4:
             buffer_counter=0
-        value=touch_routine()
-        print(value)
-        print(secure_digital_binary_routine(buffer_counter=buffer_counter,buffer_security=value))
+        value=touch_routine(touch_sensor)
+        dout["Task1"]["values"].append(value)
+        dout["Task1"]["values"].append(secure_digital_binary_routine(buffer_counter=buffer_counter,buffer_security=value))
         time.sleep(0.1)
         buffer_counter+=1
         time_counter+=1
     return time_counter
-
-def routine():
-    setup()
-    sbuffer_counter=0
-    real_time=0 # This is for demo for midterm ppt in future we will get it from the RTC module
-    #And use premptive or SJF to schedule the tasks according to time slices
-    while(True):
-        t1_t=task1(time_counter=real_time)
-        t2_t=task2(time_counter=t1_t)
-        sbuffer_counter+=1
-        real_time=0

@@ -8,12 +8,16 @@ class DeviceSensors(BaseModel):
     sensorID: str
     pins:List[int]
     readings:int
-
+    
+class Tasks(BaseModel):
+    No:int
+    pins:List[int]
 class DeviceSetting(BaseModel):
     DeviceName: str
     DeviceID:str
     DeviceVerified: bool
-    DeviceSensor:DeviceSensors
+    DeviceSensor:Optional[DeviceSensors]
+    Tasks:Optional[Tasks]
 
 def json_verify(json_file):
     """

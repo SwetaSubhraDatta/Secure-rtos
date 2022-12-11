@@ -1,4 +1,3 @@
-from lib.rtos_routine import routine
 from lib.host import Host
 from lib.device_info import DEVICENAME,DEVICEID
 

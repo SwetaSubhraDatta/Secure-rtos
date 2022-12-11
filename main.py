@@ -11,15 +11,27 @@ def verify_json(json_file):
         json_load = json.load(json_f)
         json_file_verified = json_verify(json_load)
         return json_file_verified
+
+def parse_actual_values(din):
+    values=[]
+    json_file=json.loads(din)
+    for c,i in enumerate(json_file["Task1"]["values"]):
+        if not c&1:
+            values.append(i)
+    print(values)
+    return values
+
 if __name__ == "__main__":
         host = Host(port="/dev/cu.usbmodem1103")
-        json_verified=verify_json(json_file="Host/json/example.json")
+        json_verified=verify_json(json_file="Host/json/tasks.json")
         while (json_verified):
-            host.send_comand(file ="Host/json/example.json")
+            host.send_comand(file ="Host/json/tasks.json")
             print("tx:sent command to pico")
             print("Please wait for status responnse")
             time.sleep(2)
-            print("rx:"+host.receive())
+            din=host.receive()
+            print("rx:"+din)
+            parse_actual_values(din)
             break
         host.close()
   

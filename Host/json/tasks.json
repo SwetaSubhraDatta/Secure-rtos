@@ -1,0 +1,10 @@
+{
+    "DeviceName": "pico",
+    "DeviceID": "001",
+    "DeviceVerified": "true",
+    "Tasks":
+    {
+        "No":1,
+        "pins":[0]
+    }
+}

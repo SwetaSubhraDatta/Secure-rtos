@@ -5,10 +5,7 @@
     "DeviceSensor": {
         "sensor": "touch",
         "sensorID": "001",
-        "pins": [
-            19,
-            20
-        ],
+        "pins": [0],
         "readings": 2
     }
 }

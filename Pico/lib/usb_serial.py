@@ -87,7 +87,7 @@ class Serial:
         """
         self.serial.reset_input_buffer()
         data = json.dumps(msg)
-        data=bytes("Output: "+ data,"utf-8")
+        data=bytes(data,"utf-8")
         self.serial.write(data)
         self.serial.flush()
 
