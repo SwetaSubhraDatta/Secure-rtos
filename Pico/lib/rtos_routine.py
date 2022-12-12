@@ -17,7 +17,7 @@ def secure_digital_binary_routine(buffer_counter=0,buffer_security=0):
     global touch_security
     if buffer_security>8:
         touch_security=sorted(touch_security,reversed=True)
-    touch_security=[19,8,7,6,5]
+    touch_security=[0.1,0.2,0.3,3,4.3] #confuse the attacker prevent him from knowing the exact value
     return touch_security[buffer_counter]
     
 

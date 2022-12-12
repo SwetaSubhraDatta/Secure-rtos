@@ -18,12 +18,14 @@ def parse_actual_values(din):
     for c,i in enumerate(json_file["Task1"]["values"]):
         if not c&1:
             values.append(i)
+    print("True Values")
     print(values)
     return values
 
 if __name__ == "__main__":
         host = Host(port="/dev/cu.usbmodem1103")
         json_verified=verify_json(json_file="Host/json/tasks.json")
+        print(json_verified)
         while (json_verified):
             host.send_comand(file ="Host/json/tasks.json")
             print("tx:sent command to pico")

@@ -1,7 +1,7 @@
 {
     "DeviceName": "pico",
     "DeviceID": "001",
-    "DeviceVerified": "true",
+    "DeviceVerified": false,
     "Tasks":
     {
         "No":1,

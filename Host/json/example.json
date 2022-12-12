@@ -1,5 +1,5 @@
 {
-    "DeviceName": "pico",
+    "DeviceName": 1,
     "DeviceID": "001",
     "DeviceVerified": "true",
     "DeviceSensor": {
